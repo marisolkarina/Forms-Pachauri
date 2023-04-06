@@ -1,26 +1,54 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
         <label for="name" class="form-label">Nombres</label>
-        <input type="text" class="form-control" id="exampleInputName" formControlName="name" required>
+        <input 
+            type="text" 
+            [ngClass]="{'is-invalid': myForm.get('name')?.invalid  && myForm.get('name')?.touched}"
+            class="form-control" 
+            id="exampleInputName" 
+            formControlName="name" 
+        >
+        <span class="invalid-feedback" *ngIf="myForm.get('name')?.errors?.['required']">
+            Ingrese nombres
+        </span>
+        <span class="invalid-feedback" *ngIf="myForm.get('name')?.errors?.['maxlength']">
+            Máximo 15 caracteres
+        </span>
     </div>
     
     <div class="mb-3">
         <label for="lastname" class="form-label">Apellidos</label>
-        <input type="text" class="form-control" id="exampleInputLastname" formControlName="lastname" required>
+        <input 
+            type="text" 
+            [ngClass]="{'is-invalid': myForm.get('lastname')?.invalid  && myForm.get('lastname')?.touched}"
+            class="form-control" 
+            id="exampleInputLastname" 
+            formControlName="lastname"
+        >
+        <span class="invalid-feedback" *ngIf="myForm.get('lastname')?.errors?.['required']">
+            Ingrese apellidos
+        </span>
+        <span class="invalid-feedback" *ngIf="myForm.get('lastname')?.errors?.['maxlength']">
+            Máximo 20 caracteres
+        </span>
     </div>
 
     <div class="mb-3">
-        <label for="age" class="form-label">Edad</label>
-        <input type="number" class="form-control" id="exampleInputAge" formControlName="age" required>
-    </div>
-    <div class="mb-3">
         <label for="degree" class="form-label">Grado de instrucción</label>
-        <select class="form-select" aria-label="Default select example" formControlName="instruction" required>
+        <select 
+            class="form-select" 
+            aria-label="Default select example" 
+            formControlName="instruction" 
+            [ngClass]="{'is-invalid': myForm.get('instruction')?.invalid  && myForm.get('instruction')?.touched}"
+        >
             <option selected>Elige una opción</option>
             <option value="primaria">Primaria</option>
             <option value="secundaria">Secundaria</option>
             <option value="Superior">Superior universitaria o técnica</option>
         </select>
+        <span class="invalid-feedback" *ngIf="myForm.get('instruction')?.errors?.['required']">
+            Debe elegir una opción
+        </span>
     </div>
 
 
@@ -42,7 +70,8 @@
             Correo inválido
         </span>
     </div>
-        <div class="mb-3">
+
+    <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
         <input 
             type="password" 
@@ -51,16 +80,15 @@
             id="exampleInputPassword1" 
             formControlName="password" 
         >
-        <span 
-            class="invalid-feedback" 
-            *ngIf="myForm.get('password')?.errors?.['required']"
-        >
+        <span class="invalid-feedback" *ngIf="myForm.get('password')?.errors?.['required']">
             Ingrese la contraseña
+        </span>
+        <span class="invalid-feedback" *ngIf="myForm.get('password')?.errors?.['minlength']">
+            Mínimo 6 caracteres
         </span>
     </div>
 
     <button type="submit" class="btn btn-primary">Enviar</button>
 
-    {{myForm.value | json}}
 </form>
 

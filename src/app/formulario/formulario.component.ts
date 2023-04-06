@@ -14,8 +14,7 @@ export class FormularioComponent {
     this.myForm = this.fb.group({
       name: ['',[Validators.required, Validators.maxLength(15)]],
       lastname: ['',[Validators.required, Validators.maxLength(20)]],
-      age: [],
-      instruction: [''],
+      instruction: ['',Validators.required],
       email: ['',[Validators.required, Validators.email]],
       password: ['',[Validators.required, Validators.minLength(6)]]
     });
