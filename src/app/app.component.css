@@ -1,0 +1,8 @@
+.background {
+    min-height: 100vh;
+    background-color: rgb(207, 157, 253);
+}
+h1{
+    font-size: 1.8rem;
+    text-align: center;
+}

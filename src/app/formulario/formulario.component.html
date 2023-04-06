@@ -1,0 +1,66 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nombres</label>
+        <input type="text" class="form-control" id="exampleInputName" formControlName="name" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="lastname" class="form-label">Apellidos</label>
+        <input type="text" class="form-control" id="exampleInputLastname" formControlName="lastname" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="age" class="form-label">Edad</label>
+        <input type="number" class="form-control" id="exampleInputAge" formControlName="age" required>
+    </div>
+    <div class="mb-3">
+        <label for="degree" class="form-label">Grado de instrucción</label>
+        <select class="form-select" aria-label="Default select example" formControlName="instruction" required>
+            <option selected>Elige una opción</option>
+            <option value="primaria">Primaria</option>
+            <option value="secundaria">Secundaria</option>
+            <option value="Superior">Superior universitaria o técnica</option>
+        </select>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Correo</label>
+        <input 
+            type="email" 
+            [ngClass]="{'is-invalid': myForm.get('email')?.invalid  && myForm.get('email')?.touched}"
+            class="form-control" 
+            id="exampleInputEmail1" 
+            aria-describedby="emailHelp" 
+            formControlName="email" 
+            required
+        >
+        <span class="invalid-feedback" *ngIf="myForm.get('email')?.errors?.['required']">
+            Ingrese el correo
+        </span>
+        <span class="invalid-feedback" *ngIf="myForm.get('email')?.errors?.['email']">
+            Correo inválido
+        </span>
+    </div>
+        <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+        <input 
+            type="password" 
+            [ngClass]="{'is-invalid': myForm.get('password')?.invalid && myForm.get('password')?.touched}"
+            class="form-control" 
+            id="exampleInputPassword1" 
+            formControlName="password" 
+        >
+        <span 
+            class="invalid-feedback" 
+            *ngIf="myForm.get('password')?.errors?.['required']"
+        >
+            Ingrese la contraseña
+        </span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+
+    {{myForm.value | json}}
+</form>
+
